@@ -4,7 +4,8 @@ import Card from "./components/Card";
 import { useState } from "react";
 import { useEffect } from "react";
 import Shimmer from "./components/Shimmer";
-import NotFound from "./components/NotFound"
+import NotFound from "./components/NotFound";
+import Navbar from "./components/Navbar";
 
 const Body = () => {
   const [list, setList] = useState([]);
@@ -18,10 +19,9 @@ const Body = () => {
     setFilteredList(dataJson.data.cards);
   }
   useEffect(() => {
-    console.log("useefeect")
+    console.log("useefeect");
     callapi();
   }, []);
- 
 
   if (list.length === 0) {
     return (
@@ -29,15 +29,12 @@ const Body = () => {
         <Shimmer />
       </div>
     );
-  }
-  else if(filterdList.length===0){
-    return (
-        <NotFound/>
-    )
-  }
-  else if (filterdList.length > 0) {
+  } else if (filterdList.length === 0) {
+    return <NotFound />;
+  } else if (filterdList.length > 0) {
     return (
       <div>
+        <Navbar/>
         <div className="Search">
           <input
             type="search"
