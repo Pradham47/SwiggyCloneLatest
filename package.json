@@ -1,7 +1,7 @@
 {
   "name": "new",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. The Home page has the functionalites of Navbar on top body and footer subsequently\r 2. In the body we have cards that show the name, Cuisines, Rating of a Particular restaurant.\r 3. These are fetched by the public API of swiggy.\r 4. There is a search box on top of Cards where a user can search for a Particular restaurant. \r 5. The functionality of Search box has been implemented using Hooks - UseEffect and UseState\r 6. we also added shimmer effect to show a loading gif during the time of fetching the API.\r 7. we added 404 Page to show when a Search result is not found \r 8. We are constantly Updating the UI and functionalites.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +16,13 @@
   },
   "devDependencies": {
     "process": "^0.11.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pradham47/SwiggyCloneLatest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pradham47/SwiggyCloneLatest/issues"
+  },
+  "homepage": "https://github.com/Pradham47/SwiggyCloneLatest#readme"
 }

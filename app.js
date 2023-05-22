@@ -44,7 +44,7 @@ const Body = () => {
             className="search-box"
             id="search-id"
             name="search-box"
-            placeholder="Search Here!"
+            placeholder="Search for Restro Here!"
           ></input>
           <button
             type="submit"
