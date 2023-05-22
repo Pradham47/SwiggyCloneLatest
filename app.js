@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Shimmer from "./components/Shimmer";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
+import Search from "./components/Search";
 
 const Body = () => {
   const [list, setList] = useState([]);
@@ -34,29 +35,8 @@ const Body = () => {
   } else if (filterdList.length > 0) {
     return (
       <div>
-        <Navbar/>
-        <div className="Search">
-          <input
-            type="search"
-            className="search-box"
-            id="search-id"
-            name="search-box"
-            placeholder="Search for Restro Here!"
-          ></input>
-          <button
-            type="submit"
-            onClick={() => {
-              const box = document.getElementById("search-id");
-              const filtered = list.filter((x) =>
-                x.data.data.name.toLowerCase().includes(box.value.toLowerCase())
-              );
-              setFilteredList(filtered);
-              console.log(filtered);
-            }}
-          >
-            Search
-          </button>
-        </div>
+        <Navbar />
+        <Search useList={list} useSetFilteredList={setFilteredList} />
         <div className="card-container">
           {filterdList.map((restaurant) => (
             <Card key={restaurant.data.data.id} restro={restaurant} />
