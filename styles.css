@@ -50,6 +50,8 @@ html {
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    margin-top : 5px;
+    margin-left: 30px;
 }
 
 .cuisines {
@@ -117,4 +119,7 @@ html {
     height: 70px;
     width :80px;
     /* border: 1px solid black; */
+}
+.Search{
+    margin-top: 10px;
 }
