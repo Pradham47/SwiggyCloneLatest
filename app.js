@@ -7,7 +7,12 @@ import Shimmer from "./components/Shimmer";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
-
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import About from "./components/About";
+import Error from "./components/Error";
+import Cart from "./components/Cart";
+import RestaurantMenu from "./components/RestaurantMenu";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [list, setList] = useState([]);
   const [filterdList, setFilteredList] = useState([]);
@@ -38,15 +43,37 @@ const Body = () => {
         <Navbar />
         <Search useList={list} useSetFilteredList={setFilteredList} />
         <div className="card-container">
-          {filterdList.map((restaurant) => (
-            <Card key={restaurant.data.data.id} restro={restaurant} />
-          ))}
+          {filterdList.map((restaurant) =>
+            restaurant?.data?.data?.id != null ? (
+              <Link to={"/restaurant/"+restaurant?.data?.data?.id} style={{textDecoration:"none",color:"black"}}> <Card key={restaurant?.data?.data?.id} restro={restaurant} /></Link>
+            ) : null
+          )}
         </div>
       </div>
     );
   }
 };
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+  {
+    path: "restaurant/:id",
+    element: <RestaurantMenu />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<Body />);
+root.render(<RouterProvider router={appRouter} />);

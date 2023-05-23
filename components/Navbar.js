@@ -10,11 +10,15 @@ const Navbar = () => {
         ></img>
       </div>
       <ul className="nav-list">
-        <a href="#">
+        <a href="/" style={{ textDecoration: "none" }}>
           <li className="nav-list-item">Home</li>
         </a>
-        <li className="nav-list-item">About us </li>
-        <li className="nav-list-item">Cart</li>
+        <a href="/about" style={{ textDecoration: "none" }}>
+          <li className="nav-list-item">About us </li>
+        </a>
+        <a href="/cart" style={{ textDecoration: "none" }}>
+          <li className="nav-list-item">Cart</li>
+        </a>
         <li className="nav-list-item">Contact us</li>
         {login ? (
           <button

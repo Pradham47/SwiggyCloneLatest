@@ -14,7 +14,9 @@ const Search = (props) => {
         onClick={() => {
           const box = document.getElementById("search-id");
           const filtered = useList.filter((x) =>
-            x.data.data.name.toLowerCase().includes(box.value.toLowerCase())
+            x?.data?.data?.id != null
+              ? x.data.data.name.toLowerCase().includes(box.value.toLowerCase())
+              : null
           );
           useSetFilteredList(filtered);
           console.log(filtered);
