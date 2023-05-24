@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 const RestaurantMenu = () => {
   //   const restaurant = useParams();
   const { id } = useParams();
@@ -19,6 +20,7 @@ const RestaurantMenu = () => {
   }
   return (
     <div className="restaurant-info">
+      <Navbar />
       <h1>{restuarant.name}</h1>
       <img
         src={
@@ -26,11 +28,11 @@ const RestaurantMenu = () => {
           restuarant.cloudinaryImageId
         }
       ></img>
-      <h4 className="area">{restuarant.areaName}</h4>
-      <h4 className="city">{restuarant.city}</h4>
-      <h4 className="cuisines">{restuarant?.cuisines?.join(",")}</h4>
-      <h4 className="rating">{restuarant.avgRating}</h4>
-      <h4 className="cost">{restuarant.costForTwoMessage}</h4>
+      <h4 className="area">Area : {restuarant.areaName}</h4>
+      <h4 className="city">City : {restuarant.city}</h4>
+      <h4 className="cuisines">Cuisines : {restuarant?.cuisines?.join(",")}</h4>
+      <h4 className="rating">Rating: {restuarant.avgRating}</h4>
+      <h4 className="cost">Cost : {restuarant.costForTwoMessage}</h4>
     </div>
   );
 };

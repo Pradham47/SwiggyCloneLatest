@@ -13,6 +13,7 @@ import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Link } from "react-router-dom";
+
 const Body = () => {
   const [list, setList] = useState([]);
   const [filterdList, setFilteredList] = useState([]);
@@ -45,7 +46,13 @@ const Body = () => {
         <div className="card-container">
           {filterdList.map((restaurant) =>
             restaurant?.data?.data?.id != null ? (
-              <Link to={"/restaurant/"+restaurant?.data?.data?.id} style={{textDecoration:"none",color:"black"}}> <Card key={restaurant?.data?.data?.id} restro={restaurant} /></Link>
+              <Link
+                to={"/restaurant/" + restaurant?.data?.data?.id}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                {" "}
+                <Card key={restaurant?.data?.data?.id} restro={restaurant} />
+              </Link>
             ) : null
           )}
         </div>

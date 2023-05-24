@@ -143,4 +143,11 @@ html {
 height: 200px;
 width: 250px;
 }
-
+/* .card:hover{
+   
+    border:2px solid black;
+    box-sizing: border-box;
+} */
+.card:hover{
+   box-shadow: 3px 3px 10px gray;
+}
