@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Card from "./components/Card";
-import { useState } from "react";
-import { useEffect } from "react";
 import Shimmer from "./components/Shimmer";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
@@ -13,10 +11,13 @@ import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Link } from "react-router-dom";
+import Profile from "./components/Profile";
 
 const Body = () => {
   const [list, setList] = useState([]);
   const [filterdList, setFilteredList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   async function callapi() {
     const response = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.1685786&lng=79.9338798&offset=15&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING"
@@ -24,13 +25,15 @@ const Body = () => {
     const dataJson = await response.json();
     setList(dataJson.data.cards);
     setFilteredList(dataJson.data.cards);
+    setLoading(false);
   }
+
   useEffect(() => {
     console.log("useefeect");
     callapi();
   }, []);
 
-  if (list.length === 0) {
+  if (loading) {
     return (
       <div>
         <Shimmer />
@@ -45,7 +48,7 @@ const Body = () => {
         <Search useList={list} useSetFilteredList={setFilteredList} />
         <div className="card-container">
           {filterdList.map((restaurant) =>
-            restaurant?.data?.data?.id != null ? (
+            restaurant?.data?.data?.id != undefined ? (
               <Link
                 to={"/restaurant/" + restaurant?.data?.data?.id}
                 style={{ textDecoration: "none", color: "black" }}
@@ -60,6 +63,7 @@ const Body = () => {
     );
   }
 };
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +74,12 @@ const appRouter = createBrowserRouter([
     path: "/about",
     element: <About />,
     errorElement: <Error />,
+    children: [
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+    ],
   },
   {
     path: "/cart",
